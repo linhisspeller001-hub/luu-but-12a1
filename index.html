@@ -43,11 +43,33 @@ text-shadow:0 0 10px #fff,0 0 30px #7ec8ff;
 h2{text-align:center;margin-top:20px}
 p{text-align:center;margin:15px 0}
 .btn{
-display:block;margin:25px auto;padding:14px 28px;
-background:rgba(255,255,255,.15);
-border:1px solid rgba(255,255,255,.4);
-color:white;border-radius:15px;cursor:pointer
+display:block;
+margin:25px auto;
+padding:14px 28px;
+background:rgba(255,255,255,.18);
+border:2px solid rgba(255,255,255,.8);
+color:white;
+border-radius:15px;
+cursor:pointer;
+font-weight:600;
+box-shadow:
+0 0 10px rgba(255,255,255,.5),
+0 0 20px rgba(126,200,255,.5);
+transition:.3s;
 }
+
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:
+0 0 20px rgba(255,255,255,.8),
+0 0 40px rgba(126,200,255,.8);
+}
+
+.btn:disabled{
+opacity:.75;
+cursor:not-allowed;
+}
+
 input,textarea{
 width:100%;margin:10px 0;padding:14px;
 border:none;border-radius:12px;
