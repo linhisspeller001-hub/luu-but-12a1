@@ -106,56 +106,9 @@ function lat(id){document.getElementById(id).classList.add('flip');}
 
 async function gui(){
 
-const btn =
-document.querySelector(".btn");
-
-btn.disabled = true;
-btn.innerHTML = "⏳ Đang gửi...";
-
-const data = {
-ten: ten.value,
-bietdanh: bietdanh.value,
-kyniem: kyniem.value,
-loinhan: loinhan.value
-};
-
-try{
-
-await fetch(
-SCRIPT_URL,
-{
-method:"POST",
-body:JSON.stringify(data)
-}
-);
-
-msg.innerHTML =
-"✅ Lưu bút đã được gửi thành công!";
-
-msg.style.color =
-"#7CFFB2";
-
-btn.innerHTML =
-"💙 Đã gửi";
-
-ten.value = "";
-bietdanh.value = "";
-kyniem.value = "";
-loinhan.value = "";
-
-}
-catch(err){
-
-msg.innerHTML =
-"❌ Gửi thất bại. Hãy thử lại.";
-
-btn.disabled = false;
-
-btn.innerHTML =
-"Gửi lưu bút ❤️";
-
-}
-
+if(localStorage.getItem("daGui")){
+    alert("💌 Bạn đã gửi lưu bút rồi!");
+    return;
 }
 
 const data={
@@ -164,11 +117,18 @@ bietdanh:bietdanh.value,
 kyniem:kyniem.value,
 loinhan:loinhan.value
 };
+
 try{
-await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(data)});
+
+await fetch(...);
+
 msg.innerText='💙 Đã gửi thành công!';
-}catch(e){
-msg.innerText='Hãy thay URL Apps Script.';
+
+localStorage.setItem("daGui","true");
+
+}
+catch(e){
+
 }
 }
 
