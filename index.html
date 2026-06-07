@@ -43,33 +43,11 @@ text-shadow:0 0 10px #fff,0 0 30px #7ec8ff;
 h2{text-align:center;margin-top:20px}
 p{text-align:center;margin:15px 0}
 .btn{
-display:block;
-margin:25px auto;
-padding:14px 28px;
-background:rgba(255,255,255,.18);
-border:2px solid rgba(255,255,255,.8);
-color:white;
-border-radius:15px;
-cursor:pointer;
-font-weight:600;
-box-shadow:
-0 0 10px rgba(255,255,255,.5),
-0 0 20px rgba(126,200,255,.5);
-transition:.3s;
+display:block;margin:25px auto;padding:14px 28px;
+background:rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.4);
+color:white;border-radius:15px;cursor:pointer
 }
-
-.btn:hover{
-transform:translateY(-2px);
-box-shadow:
-0 0 20px rgba(255,255,255,.8),
-0 0 40px rgba(126,200,255,.8);
-}
-
-.btn:disabled{
-opacity:.75;
-cursor:not-allowed;
-}
-
 input,textarea{
 width:100%;margin:10px 0;padding:14px;
 border:none;border-radius:12px;
@@ -85,26 +63,6 @@ animation:fall linear infinite;
 @keyframes fall{
 to{transform:translate(350px,110vh) rotate(540deg)}
 }
-#successBox{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-padding:20px 35px;
-border-radius:20px;
-background:rgba(20,120,255,.2);
-backdrop-filter:blur(15px);
-border:2px solid rgba(255,255,255,.8);
-color:white;
-font-size:22px;
-font-weight:bold;
-box-shadow:
-0 0 20px #6ec1ff,
-0 0 40px #6ec1ff,
-0 0 80px #6ec1ff;
-display:none;
-z-index:99999;
-} 
 </style>
 </head>
 <body>
@@ -145,30 +103,18 @@ const SCRIPT_URL="https://script.google.com/macros/s/AKfycbx0epUM95OPhujl1IhuUuF
 function lat(id){document.getElementById(id).classList.add('flip');}
 
 async function gui(){
-
-if(localStorage.getItem("daGui")){
-    alert("💌 Bạn đã gửi lưu bút rồi!");
-    return;
-}
-
 const data={
 ten:ten.value,
 bietdanh:bietdanh.value,
 kyniem:kyniem.value,
 loinhan:loinhan.value
 };
-
-await fetch(...);
-    document.getElementById("successBox").style.display = "block";
-
-setTimeout(function(){
-    document.getElementById("successBox").style.display = "none";
-},3000);
-
+try{
+await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(data)});
 msg.innerText='💙 Đã gửi thành công!';
-
-localStorage.setItem("daGui","true");
-
+}catch(e){
+msg.innerText='Hãy thay URL Apps Script.';
+}
 }
 
 for(let i=0;i<40;i++){
@@ -181,7 +127,5 @@ p.style.animationDuration=(8+Math.random()*10)+'s';
 document.body.appendChild(p);
 }
 </script>
-<div id="successBox">
-    ✅ Lưu bút đã được gửi thành công!
-</div></body>
+</body>
 </html>
