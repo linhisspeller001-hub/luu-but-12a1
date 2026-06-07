@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lưu Bút 12A1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Quicksand',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:url("lop.jpg") center/cover no-repeat;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(
+        rgba(255,150,90,.35),
+        rgba(255,120,80,.55)
+    );
+}
+
+.book{
+    position:relative;
+    width:900px;
+    height:600px;
+    perspective:2500px;
+    z-index:2;
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#fffdf8;
+    border-radius:10px;
+    transform-origin:left;
+    transition:1.2s;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    overflow:hidden;
+}
+
+.page1{
+    z-index:3;
+}
+
+.page2{
+    z-index:2;
+}
+
+.page.flip{
+    transform:rotateY(-180deg);
+}
+
+.content{
+    padding:60px;
+    height:100%;
+}
+
+.title{
+    text-align:center;
+    margin-top:100px;
+}
+
+.title h1{
+    font-size:60px;
+    color:#ff6b35;
+}
+
+.title p{
+    margin-top:20px;
+    font-size:20px;
+    color:#666;
+}
+
+.btn{
+    display:block;
+    margin:50px auto;
+    padding:15px 40px;
+    border:none;
+    border-radius:50px;
+    background:#ff6b35;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.message{
+    max-width:600px;
+    margin:auto;
+    text-align:center;
+}
+
+.message h2{
+    margin-bottom:20px;
+    color:#ff6b35;
+}
+
+.message p{
+    line-height:1.8;
+    color:#555;
+}
+
+.petals{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+}
+
+.petal{
+    position:absolute;
+    top:-30px;
+    color:#ffd2d2;
+    font-size:22px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:
+        translateY(110vh)
+        rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="petals" id="petals"></div>
+
+<div class="book">
+
+    <div class="page page2">
+        <div class="content">
+            <div class="message">
+                <h2>💌 Gửi tới Linh</h2>
+
+                <p>
+                Thanh xuân chỉ đến một lần.
+                Nếu bạn có điều gì muốn nhắn gửi tới
+                Linh hoặc tập thể 12A1,
+                hãy để lại đôi dòng trong cuốn lưu bút này.
+                </p>
+
+                <br><br>
+
+                <input
+                style="width:100%;padding:15px;border-radius:10px;border:1px solid #ddd"
+                placeholder="Tên của bạn">
+
+                <br><br>
+
+                <textarea
+                style="width:100%;height:180px;padding:15px;border-radius:10px;border:1px solid #ddd"
+                placeholder="Viết lưu bút của bạn..."></textarea>
+
+                <br><br>
+
+                <button class="btn">
+                    Gửi lưu bút ❤️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page page1" id="cover">
+        <div class="content">
+
+            <div class="title">
+                <h1>Lưu Bút 12A1</h1>
+
+                <p>
+                    Những năm tháng thanh xuân đẹp nhất
+                </p>
+
+                <button class="btn" onclick="openBook()">
+                    Mở cuốn lưu bút 📖
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+function openBook(){
+    document.getElementById("cover")
+    .classList.add("flip");
+}
+
+for(let i=0;i<25;i++){
+
+    let p=document.createElement("div");
+
+    p.className="petal";
+
+    p.innerHTML="✿";
+
+    p.style.left=Math.random()*100+"%";
+
+    p.style.animationDuration=
+    (5+Math.random()*10)+"s";
+
+    p.style.animationDelay=
+    Math.random()*5+"s";
+
+    document
+    .getElementById("petals")
+    .appendChild(p);
+}
+
+</script>
+
+</body>
+</html>
